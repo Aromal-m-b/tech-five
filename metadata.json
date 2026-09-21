@@ -1,0 +1,6 @@
+{
+  "name": "Tech Five - Student Projects & Software Services",
+  "description": "Premier hub for engineering student projects (major and mini) and custom software development services for startups and MNCs.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
