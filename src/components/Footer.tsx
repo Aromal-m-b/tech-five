@@ -13,9 +13,10 @@ import {
 
 interface FooterProps {
   onOpenInquiry: (initialData?: { type?: string; projectTitle?: string }) => void;
+  onNavigateHome?: () => void;
 }
 
-export const Footer: React.FC<FooterProps> = ({ onOpenInquiry }) => {
+export const Footer: React.FC<FooterProps> = ({ onOpenInquiry, onNavigateHome }) => {
   return (
     <footer className="bg-[#050811] border-t border-slate-800/80 text-slate-400 text-xs">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -117,6 +118,17 @@ export const Footer: React.FC<FooterProps> = ({ onOpenInquiry }) => {
             &copy; {new Date().getFullYear()} Tech Five (T5). All rights reserved. Registered software & academic development consultancy.
           </div>
           <div className="flex items-center gap-4">
+            {onNavigateHome && (
+              <>
+                <button 
+                  onClick={onNavigateHome}
+                  className="text-cyan-400 hover:text-cyan-300 font-medium transition-colors"
+                >
+                  Launch Countdown (/)
+                </button>
+                <span>&bull;</span>
+              </>
+            )}
             <a href="#hero-section" className="hover:text-slate-300 transition-colors">Back to Top</a>
             <span>&bull;</span>
             <span className="text-slate-400">IEEE Standard Formats</span>

@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { TechFiveLogo } from './TechFiveLogo';
-import { MessageSquare, Menu, X, ArrowUpRight, GraduationCap, Building2, Calculator, Sparkles } from 'lucide-react';
+import { MessageSquare, Menu, X, ArrowUpRight, GraduationCap, Building2, Calculator, Sparkles, Clock, ArrowLeft } from 'lucide-react';
 
 interface NavbarProps {
   onOpenInquiry: (initialData?: { type?: string; projectTitle?: string }) => void;
+  onNavigateHome?: () => void;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ onOpenInquiry }) => {
+export const Navbar: React.FC<NavbarProps> = ({ onOpenInquiry, onNavigateHome }) => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -28,10 +29,28 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenInquiry }) => {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-        {/* Logo */}
-        <a href="#" className="flex items-center gap-2 group transition-transform hover:scale-[1.02]">
-          <TechFiveLogo size={42} showWordmark withGlow />
-        </a>
+        {/* Logo & Countdown Link */}
+        <div className="flex items-center gap-3">
+          <button 
+            type="button"
+            onClick={onNavigateHome || (() => { window.location.href = '/'; })}
+            className="flex items-center gap-2 group transition-transform hover:scale-[1.02] text-left cursor-pointer"
+            title="Tech Five Home"
+          >
+            <TechFiveLogo size={42} showWordmark withGlow />
+          </button>
+
+          {onNavigateHome && (
+            <button
+              type="button"
+              onClick={onNavigateHome}
+              className="hidden md:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-slate-900/90 border border-cyan-500/30 text-[11px] text-cyan-300 hover:bg-cyan-500/10 hover:border-cyan-400 transition-all cursor-pointer"
+            >
+              <ArrowLeft className="w-3 h-3 text-cyan-400" />
+              <span>Launch Countdown (/)</span>
+            </button>
+          )}
+        </div>
 
         {/* Desktop Navigation Links */}
         <div className="hidden lg:flex items-center gap-8 text-sm font-medium text-slate-300">
@@ -196,6 +215,20 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenInquiry }) => {
                 <MessageSquare className="w-4 h-4 text-emerald-400" />
                 <span>Chat Directly on WhatsApp</span>
               </a>
+
+              {onNavigateHome && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    onNavigateHome();
+                  }}
+                  className="w-full py-2 rounded-lg bg-slate-900 border border-slate-700 text-slate-300 font-medium text-xs flex items-center justify-center gap-2"
+                >
+                  <ArrowLeft className="w-3.5 h-3.5 text-cyan-400" />
+                  <span>Return to Launch Countdown (/)</span>
+                </button>
+              )}
             </div>
           </div>
         </div>
