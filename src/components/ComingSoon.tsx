@@ -20,13 +20,13 @@ export const ComingSoon: React.FC<ComingSoonProps> = ({
   onNavigateToUpcoming, 
   onOpenInquiry 
 }) => {
-  // Store or retrieve 30-day launch target date
+  // Store or retrieve 5-day launch target date
   const [timeLeft, setTimeLeft] = useState<{
     days: number;
     hours: number;
     minutes: number;
     seconds: number;
-  }>({ days: 30, hours: 0, minutes: 0, seconds: 0 });
+  }>({ days: 5, hours: 0, minutes: 0, seconds: 0 });
 
   // Early notification subscription state
   const [contactInput, setContactInput] = useState('');
@@ -34,15 +34,15 @@ export const ComingSoon: React.FC<ComingSoonProps> = ({
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
-    const STORAGE_KEY = 'techfive_launch_target_v1';
+    const STORAGE_KEY = 'techfive_launch_target_5d_v1';
     let targetTime: number;
 
     const savedTarget = localStorage.getItem(STORAGE_KEY);
     if (savedTarget && !isNaN(Number(savedTarget))) {
       targetTime = Number(savedTarget);
     } else {
-      // 30 days from current date
-      targetTime = Date.now() + 30 * 24 * 60 * 60 * 1000;
+      // 5 days from current date
+      targetTime = Date.now() + 5 * 24 * 60 * 60 * 1000;
       localStorage.setItem(STORAGE_KEY, targetTime.toString());
     }
 

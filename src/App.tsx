@@ -154,7 +154,7 @@ export default function App() {
               <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
             </span>
             <span className="font-semibold text-white">Upcoming Platform Preview:</span>
-            <span className="text-slate-300">Official launch countdown active (1 month)</span>
+            <span className="text-slate-300">Official launch countdown active (5 days)</span>
           </div>
 
           <div className="flex items-center gap-3">
